@@ -76,7 +76,7 @@ body{
         I came from bottom scaled
     </div>
     <script>
-        function scrollTrigger(selector, options = {}){
+function scrollTrigger(selector, options = {}){
     let els = document.querySelectorAll(selector)
     els = Array.from(els)
     els.forEach(el => {
@@ -112,6 +112,16 @@ scrollTrigger('.intro-text')
 
 scrollTrigger('.scroll-reveal', {
     rootMargin: '-200px',
+})
+
+scrollTrigger('.loader', {
+    rootMargin: '-200px',
+    cb: function(el){
+        el.innerText = 'Loading...'
+        setTimeout(() => {
+            el.innerText = 'Task Complete!'
+        }, 1000)
+    }
 })
 
 </script>
