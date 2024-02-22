@@ -18,4 +18,26 @@ const observer = new IntersectionObserver((entries) => {
    const elements = the_animation[i];
 
     observer.observe(elements);
+  }
+
+const theanimation = document.querySelectorAll('.p-base')
+
+const observer1 = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('p-base-animation')
+        }
+            else {
+                entry.target.classList.remove('p-base-animation')
+            }
+        
+    })
+},
+   { threshold: 0.1
+   });
+//
+  for (let i = 0; i < theanimation.length; i++) {
+   const elements = theanimation[i];
+
+    observer1.observe(elements);
   } 
