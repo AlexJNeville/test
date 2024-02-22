@@ -1,47 +1,21 @@
-function scrollTrigger(selector, options = {}){
-    let els = document.querySelectorAll(selector)
-    els = Array.from(els)
-    els.forEach(el => {
-        addObserver(el, options)
-    })
-}
+const the_animation = document.querySelectorAll('.animation')
 
-function addObserver(el, options){
-    if(!('IntersectionObserver' in window)){
-        if(options.cb){
-            options.cb(el)
-        }else{
-            entry.target.classList.add('active')
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('scroll-animation')
         }
-        return
-    }
-    let observer = new IntersectionObserver((entries, observer) => { //this takes a callback function which receives two arguments: the elemts list and the observer instance
-        entries.forEach(entry => {
-            if(entry.isIntersecting){
-                if(options.cb){
-                    options.cb(el)
-                }else{
-                    entry.target.classList.add('active')
-                }
-                observer.unobserve(entry.target)
+            else {
+                entry.target.classList.remove('scroll-animation')
             }
-        })
-    }, options)
-    observer.observe(el)
-}
-// Example usages:
-scrollTrigger('.intro-text')
+        
+    })
+},
+   { threshold: 0.5
+   });
+//
+  for (let i = 0; i < the_animation.length; i++) {
+   const elements = the_animation[i];
 
-scrollTrigger('.scroll-reveal', {
-    rootMargin: '-200px',
-})
-
-scrollTrigger('.loader', {
-    rootMargin: '-200px',
-    cb: function(el){
-        el.innerText = 'Loading...'
-        setTimeout(() => {
-            el.innerText = 'Task Complete!'
-        }, 1000)
-    }
-})
+    observer.observe(elements);
+  } 
