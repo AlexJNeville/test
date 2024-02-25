@@ -3,7 +3,7 @@
 }
 
   
-.content1 {
+.box {
   background-color: purple;
   color: #fff;
   display: flex;
@@ -17,7 +17,7 @@
   transition: transform 0.3s ease;
 }
 
-.content1.show {
+.box.show {
   transform: translateY(0);
   opacity: 0;
 }
